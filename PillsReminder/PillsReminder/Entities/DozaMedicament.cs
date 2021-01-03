@@ -12,5 +12,7 @@ namespace PillsReminder.Entities
         public DateTime Data { get; set; }
         public DateTime Ora { get; set; }
         public bool Luata { get; set; }
+        public virtual ICollection<User> User { get; set; }
+        public virtual Medicament Medicament { get; set; }
     }
 }

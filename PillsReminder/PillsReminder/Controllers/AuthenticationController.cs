@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PillsReminder.Entities;
-using PillsReminder.Helpers;
-using PillsReminder.Interfaces;
+using PillsReminder.Service;
+using PillsReminder.Repository;
 using PillsReminder.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +23,7 @@ namespace PillsReminder.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult Register(AuthenticationRequest request)
+        public IActionResult Register(RegisterRequest request)
         {
             userService.Register(request);
             return Ok();

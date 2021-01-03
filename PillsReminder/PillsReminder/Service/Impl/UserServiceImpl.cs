@@ -1,8 +1,6 @@
-using PillsReminder.Data.Interfaces;
 using PillsReminder.Entities;
+using PillsReminder.Repository;
 using PillsReminder.Helpers;
-using PillsReminder.Interfaces;
-using PillsReminder.Mapper;
 using PillsReminder.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -48,7 +46,7 @@ namespace PillsReminder.Service.Impl
         public bool Register(RegisterRequest request)
         {
             var user = request.ToUserEntity();
-            userRepository.Create(user);
+            userRepository.Create((User)user);
             userRepository.SaveChanges();
             return true;
         }
@@ -56,7 +54,7 @@ namespace PillsReminder.Service.Impl
         private string GenerateJwtToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new System.Security.Claims.ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),

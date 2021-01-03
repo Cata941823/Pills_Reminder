@@ -1,3 +1,8 @@
+using PillsReminder.Data;
+using PillsReminder.Repository;
+using PillsReminder.Helpers;
+using PillsReminder.Repository.Impl;
+using PillsReminder.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -5,6 +10,8 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using PillsReminder.Service.Impl;
 
 namespace PillsReminder
 {
@@ -26,6 +33,14 @@ namespace PillsReminder
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            
+            services.AddDbContext<AppContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient<UserService, UserServiceImpl>();
+
+            services.AddTransient<UserRepository, UserRepositoryImpl>();
+
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

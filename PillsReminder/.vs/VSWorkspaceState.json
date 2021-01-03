@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\PillsReminder",
+    "\\PillsReminder\\Entities",
+    "\\PillsReminder\\Models",
+    "\\PillsReminder\\Repository",
+    "\\PillsReminder\\Repository\\Impl",
+    "\\PillsReminder\\Service",
+    "\\PillsReminder\\Service\\Impl"
+  ],
+  "PreviewInSolutionExplorer": false
+}

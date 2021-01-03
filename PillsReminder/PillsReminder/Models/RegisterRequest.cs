@@ -11,5 +11,10 @@ namespace PillsReminder.Models
         public string Prenume { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+
+        internal object ToUserEntity()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
