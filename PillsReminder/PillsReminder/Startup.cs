@@ -41,7 +41,8 @@ namespace PillsReminder
                        .AllowAnyHeader();
             }));
 
-            services.AddDbContext<AppContext>(options => options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PillsDB;"));
+            //services.AddDbContext<AppContext>(options => options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PillsDB;"));
+            services.AddDbContext<AppContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<UserService, UserServiceImpl>();
 

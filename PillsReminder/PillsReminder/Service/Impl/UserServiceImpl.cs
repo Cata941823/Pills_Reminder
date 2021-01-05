@@ -1,17 +1,14 @@
-using PillsReminder.Entities;
-using PillsReminder.Repository;
-using PillsReminder.Helpers;
-using PillsReminder.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using PillsReminder.Entities;
+using PillsReminder.Helpers;
+using PillsReminder.Mapper;
+using PillsReminder.Models;
+using PillsReminder.Repository;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
-using PillsReminder.Mapper;
 
 namespace PillsReminder.Service.Impl
 {
@@ -29,7 +26,7 @@ namespace PillsReminder.Service.Impl
         public AuthenticationResponse Login(AuthenticationRequest request)
         {
             // Get user from database
-            var user = userRepository.GetByEmailAndPassword(request.Email, request.Password);
+            var user = userRepository.GetByEmailAndPassword(request.Email, request.Parola);
             if (user == null)
                 return null;
 
@@ -42,6 +39,11 @@ namespace PillsReminder.Service.Impl
                 Email = user.Email,
                 Token = token
             };
+        }
+
+        public User GetById(int id)
+        {
+            return userRepository.FindById(id);
         }
 
         public bool Register(RegisterRequest request)
