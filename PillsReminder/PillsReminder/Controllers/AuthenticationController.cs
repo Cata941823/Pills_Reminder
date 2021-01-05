@@ -8,11 +8,13 @@ using PillsReminder.Repository;
 using PillsReminder.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Cors;
 
 namespace PillsReminder.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("MyPolicy")]
     public class AuthController : ControllerBase
     {
         private readonly UserService userService;
@@ -34,5 +36,8 @@ namespace PillsReminder.Controllers
         {
             return Ok(userService.Login(request));
         }
+
+        [HttpGet("Inform")]
+        public IActionResult Info() => Ok("Infoooo");
     }
 }

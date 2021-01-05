@@ -11,6 +11,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using PillsReminder.Mapper;
 
 namespace PillsReminder.Service.Impl
 {
@@ -45,8 +46,8 @@ namespace PillsReminder.Service.Impl
 
         public bool Register(RegisterRequest request)
         {
-            var user = request.ToUserEntity();
-            userRepository.Create((User)user);
+            var user = request.ToUserExtension();
+            userRepository.Create(user);
             userRepository.SaveChanges();
             return true;
         }

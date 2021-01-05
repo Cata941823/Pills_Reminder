@@ -33,8 +33,15 @@ namespace PillsReminder
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-            
-            services.AddDbContext<AppContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
+            services.AddDbContext<AppContext>(options => options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PillsDB;"));
 
             services.AddTransient<UserService, UserServiceImpl>();
 
@@ -65,7 +72,7 @@ namespace PillsReminder
             }
 
             app.UseRouting();
-
+            app.UseCors();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

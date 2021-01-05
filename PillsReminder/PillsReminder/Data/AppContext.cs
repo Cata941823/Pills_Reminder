@@ -9,7 +9,7 @@ namespace PillsReminder.Data
 {
     public class AppContext : DbContext
     {
-   
+        public AppContext(DbContextOptions<AppContext> options) : base(options) { }
         public DbSet<User> Users { get; set; }
         public DbSet<DozaMedicament> DozaMedicament { get; set; }
         public DbSet<ListaMedicament> ListaMedicament { get; set; }

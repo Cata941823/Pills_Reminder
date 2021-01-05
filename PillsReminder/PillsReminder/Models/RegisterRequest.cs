@@ -1,3 +1,4 @@
+using PillsReminder.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,6 @@ namespace PillsReminder.Models
         public string Nume { get; set; }
         public string Prenume { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
-
-        internal object ToUserEntity()
-        {
-            throw new NotImplementedException();
-        }
+        public string Parola { get; set; }
     }
 }
