@@ -23,22 +23,39 @@ namespace PillsReminder.Service.Impl
 
         public bool DeleteUserById(int id)
         {
-            throw new NotImplementedException();
+            User user = userRepository.FindById(id);
+            userRepository.Delete(user);
+            userRepository.SaveChanges();
+
+            if (userRepository.FindById(id) == null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
-        public bool EditProfile(AuthenticationRequest request)
+        public bool EditProfile(UserProfileResponse request, int id)
         {
-            throw new NotImplementedException();
+            User user = userRepository.FindById(id);
+            user.Nume = request.Nume;
+            user.Prenume = request.Prenume;
+
+            userRepository.Update(user);
+            return userRepository.SaveChanges();
+
         }
 
-        public List<User> GetAll()
+        /*public List<User> GetAll()
         {
             return userRepository.GetAll();
-        }
+        }*/
 
         public User GetUserById(int id)
         {
-            throw new NotImplementedException();
+            User response = userRepository.FindById(id);
+            response.Parola = null;
+            return response;
         }
     }
 }

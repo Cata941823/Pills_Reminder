@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace PillsReminder.Service
 {
+#pragma warning disable IDE1006 // Naming Styles
     public interface ProfileService
+#pragma warning restore IDE1006 // Naming Styles
     {
-        List<User> GetAll();
+        //List<User> GetAll();
         User GetUserById(int id);
-        bool EditProfile(AuthenticationRequest request);
+        bool EditProfile(UserProfileResponse request, int Id);
         bool DeleteUserById(int id);
     }
 }

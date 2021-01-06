@@ -28,7 +28,6 @@ namespace PillsReminder.Helpers
         public async Task Invoke(HttpContext context, UserRepository userRepository)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-
             if (token != null)
                 AttachUserToContextByToken(context, userRepository, token);
 
