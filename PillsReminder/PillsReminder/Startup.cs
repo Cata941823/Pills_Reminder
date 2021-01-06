@@ -12,6 +12,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using PillsReminder.Service.Impl;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.VisualBasic;
+using System.Net;
 
 namespace PillsReminder
 {
@@ -34,6 +39,25 @@ namespace PillsReminder
                 configuration.RootPath = "ClientApp/dist";
             });
 
+            //services.AddDbContext<AppContext>(options => options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PillsDB;"));
+            services.AddDbContext<AppContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            
+            services.AddTransient<UserRepository, UserRepositoryImpl>();
+            services.AddTransient<UserService, UserServiceImpl>();
+            services.AddTransient<ProfileService, ProfileServiceImpl>();
+
+            services.Configure<AuthorizationOptions>(options =>
+            {
+                options.AddPolicy("LoggedIn", policy => policy.RequireClaim("LoggedIn"));
+            });
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            });
+
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
                 builder.AllowAnyOrigin()
@@ -41,14 +65,6 @@ namespace PillsReminder
                        .AllowAnyHeader();
             }));
 
-            //services.AddDbContext<AppContext>(options => options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PillsDB;"));
-            services.AddDbContext<AppContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddTransient<UserService, UserServiceImpl>();
-
-            services.AddTransient<UserRepository, UserRepositoryImpl>();
-
-            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,6 +90,9 @@ namespace PillsReminder
 
             app.UseRouting();
             app.UseCors();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseMiddleware<JwtMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

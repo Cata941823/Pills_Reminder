@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PillsReminder.Service.Impl;
+using PillsReminder.Repository;
 
 namespace PillsReminder.Helpers
 {
@@ -24,17 +25,17 @@ namespace PillsReminder.Helpers
             _appSettings = options.Value;
         }
 
-        public async Task Invoke(HttpContext context, UserServiceImpl userServiceImpl)
+        public async Task Invoke(HttpContext context, UserRepository userRepository)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
             if (token != null)
-                AttachUserToContextByToken(context, userServiceImpl, token);
+                AttachUserToContextByToken(context, userRepository, token);
 
             await _next(context);
         }
 
-        private void AttachUserToContextByToken(HttpContext context, UserServiceImpl userServiceImpl, string token)
+        private void AttachUserToContextByToken(HttpContext context, UserRepository userRepository, string token)
         {
             try
             {
@@ -51,7 +52,7 @@ namespace PillsReminder.Helpers
                 var jwtToken = (JwtSecurityToken)securityToken;
                 var userId = int.Parse(jwtToken.Claims.FirstOrDefault(x => x.Type == "id").Value);
 
-                context.Items["User"] = userServiceImpl.GetById(userId);
+                context.Items["User"] = userRepository.FindById(userId);
             }
             catch (Exception)
             {

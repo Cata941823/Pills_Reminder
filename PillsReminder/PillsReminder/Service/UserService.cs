@@ -11,5 +11,6 @@ namespace PillsReminder.Service
     {
         bool Register(RegisterRequest request);
         AuthenticationResponse Login(AuthenticationRequest request);
+        User GetById(int id);
     }
 }
