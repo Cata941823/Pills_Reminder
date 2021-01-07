@@ -38,7 +38,7 @@ namespace PillsReminder.Controllers
         public IActionResult GetDoze()
         {
             var user = (User)HttpContext.Items["User"];
-            return Ok(pillsService.GetDoze().Where(x => x.User.Id == user.Id));
+            return Ok(pillsService.GetDoze());
         }
 
         [HttpPut("UpdateDoza")]
