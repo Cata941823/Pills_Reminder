@@ -12,10 +12,9 @@ namespace PillsReminder.Entities
         public string Prenume { get; set; }
         public string Email { get; set; }
         public string Parola { get; set; }
-
         public virtual Adresa Adresa { get; set; }
-        public virtual ICollection<DozaMedicament> DozaMedicament { get; set; }
-        public virtual ListaMedicament ListaMedicament { get; set; }
+        public virtual ICollection<DozaMedicament> DozaMedicaments { get; set; }
+        public virtual ICollection<Medicament> Medicaments { get; set; }
     }
 
 }

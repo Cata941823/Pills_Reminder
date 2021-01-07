@@ -5,11 +5,10 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PillsReminder.Data;
-using AppContext = PillsReminder.Data.AppContext;
 
 namespace PillsReminder.Migrations
 {
-    [DbContext(typeof(AppContext))]
+    [DbContext(typeof(Data.AppContext))]
     partial class AppContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -20,19 +19,19 @@ namespace PillsReminder.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.1");
 
-            modelBuilder.Entity("DozaMedicamentUser", b =>
+            modelBuilder.Entity("MedicamentUser", b =>
                 {
-                    b.Property<int>("DozaMedicamentId")
+                    b.Property<int>("MedicamentsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int>("UsersId")
                         .HasColumnType("int");
 
-                    b.HasKey("DozaMedicamentId", "UserId");
+                    b.HasKey("MedicamentsId", "UsersId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UsersId");
 
-                    b.ToTable("DozaMedicamentUser");
+                    b.ToTable("MedicamentUser");
                 });
 
             modelBuilder.Entity("PillsReminder.Entities.Adresa", b =>
@@ -78,28 +77,16 @@ namespace PillsReminder.Migrations
                     b.Property<DateTime>("Ora")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("MedicamentId");
-
-                    b.ToTable("DozaMedicament");
-                });
-
-            modelBuilder.Entity("PillsReminder.Entities.ListaMedicament", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int?>("MedicamentId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("MedicamentId");
 
-                    b.ToTable("ListaMedicament");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("DozaMedicament");
                 });
 
             modelBuilder.Entity("PillsReminder.Entities.Medicament", b =>
@@ -127,9 +114,6 @@ namespace PillsReminder.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ListaMedicamentId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nume")
                         .HasColumnType("nvarchar(max)");
 
@@ -141,22 +125,20 @@ namespace PillsReminder.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ListaMedicamentId");
-
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("DozaMedicamentUser", b =>
+            modelBuilder.Entity("MedicamentUser", b =>
                 {
-                    b.HasOne("PillsReminder.Entities.DozaMedicament", null)
+                    b.HasOne("PillsReminder.Entities.Medicament", null)
                         .WithMany()
-                        .HasForeignKey("DozaMedicamentId")
+                        .HasForeignKey("MedicamentsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("PillsReminder.Entities.User", null)
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -175,45 +157,28 @@ namespace PillsReminder.Migrations
             modelBuilder.Entity("PillsReminder.Entities.DozaMedicament", b =>
                 {
                     b.HasOne("PillsReminder.Entities.Medicament", "Medicament")
-                        .WithMany("DozaMedicament")
+                        .WithMany("DozaMedicaments")
                         .HasForeignKey("MedicamentId");
 
-                    b.Navigation("Medicament");
-                });
-
-            modelBuilder.Entity("PillsReminder.Entities.ListaMedicament", b =>
-                {
-                    b.HasOne("PillsReminder.Entities.Medicament", "Medicament")
-                        .WithMany("ListaMedicament")
-                        .HasForeignKey("MedicamentId");
+                    b.HasOne("PillsReminder.Entities.User", "User")
+                        .WithMany("DozaMedicaments")
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Medicament");
-                });
 
-            modelBuilder.Entity("PillsReminder.Entities.User", b =>
-                {
-                    b.HasOne("PillsReminder.Entities.ListaMedicament", "ListaMedicament")
-                        .WithMany("User")
-                        .HasForeignKey("ListaMedicamentId");
-
-                    b.Navigation("ListaMedicament");
-                });
-
-            modelBuilder.Entity("PillsReminder.Entities.ListaMedicament", b =>
-                {
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("PillsReminder.Entities.Medicament", b =>
                 {
-                    b.Navigation("DozaMedicament");
-
-                    b.Navigation("ListaMedicament");
+                    b.Navigation("DozaMedicaments");
                 });
 
             modelBuilder.Entity("PillsReminder.Entities.User", b =>
                 {
                     b.Navigation("Adresa");
+
+                    b.Navigation("DozaMedicaments");
                 });
 #pragma warning restore 612, 618
         }

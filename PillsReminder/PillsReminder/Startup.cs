@@ -46,6 +46,9 @@ namespace PillsReminder
             services.AddTransient<UserRepository, UserRepositoryImpl>();
             services.AddTransient<UserService, UserServiceImpl>();
             services.AddTransient<ProfileService, ProfileServiceImpl>();
+            services.AddTransient<PillsService, PillsServiceImpl>();
+            services.AddTransient<DozaMedicamentRepository, DozaMedicamentRepositoryImpl>();
+            services.AddTransient<MedicamentRepository, MedicamentRepositoryImpl>();
 
             services.Configure<AuthorizationOptions>(options =>
             {

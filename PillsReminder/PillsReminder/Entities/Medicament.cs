@@ -9,7 +9,9 @@ namespace PillsReminder.Entities
     {
         public int Id { get; set; }
         public string Denumire { get; set; }
-        public virtual ICollection<DozaMedicament> DozaMedicament { get; set; }
-        public virtual ICollection<ListaMedicament> ListaMedicament { get; set; }
+
+        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<DozaMedicament> DozaMedicaments { get; set; }
+
     }
 }
