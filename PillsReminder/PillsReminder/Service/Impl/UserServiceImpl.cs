@@ -48,10 +48,17 @@ namespace PillsReminder.Service.Impl
 
         public bool Register(RegisterRequest request)
         {
-            var user = request.ToUserExtension();
-            userRepository.Create(user);
-            userRepository.SaveChanges();
-            return true;
+            User findUser = userRepository.FindByEmail(request.Email);
+            if (findUser == null)
+            {
+                var user = request.ToUserExtension();
+                userRepository.Create(user);
+                return (userRepository.SaveChanges());
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private string GenerateJwtToken(User user)

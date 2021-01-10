@@ -35,6 +35,7 @@ namespace PillsReminder.Repository.Impl
             _table.Remove(entity);
         }
 
+
         public T FindById(int id)
         {
             return _table.Find(id);

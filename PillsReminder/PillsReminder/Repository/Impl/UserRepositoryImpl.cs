@@ -15,6 +15,11 @@ namespace PillsReminder.Repository.Impl
         {
         }
 
+        public User FindByEmail(string email)
+        {
+            return _table.Where(x => x.Email == email).FirstOrDefault();
+        }
+
         public User GetByEmailAndPassword(string email, string password)
         {
             return _table.Where(x => x.Email == email && x.Parola == password).FirstOrDefault();

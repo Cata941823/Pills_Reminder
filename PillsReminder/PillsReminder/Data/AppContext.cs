@@ -28,6 +28,5 @@ namespace PillsReminder.Data
                 .WithOne(b => b.User)
                 .HasForeignKey<Adresa>(b => b.IdUtilizator);
         }
-
     }
 }

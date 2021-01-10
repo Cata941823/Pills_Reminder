@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
+import { LoginGuard } from './guard/login.guard';
 
 @NgModule({
   declarations: [
@@ -30,15 +31,15 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'home', component: HomeComponent },
+      { path: 'counter', component: CounterComponent, canActivate: [LoginGuard]  },
+      { path: 'fetch-data', component: FetchDataComponent, canActivate: [LoginGuard]  },
+      { path: 'home', component: HomeComponent, canActivate: [LoginGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'profile', component: ProfileComponent },
+      { path: 'profile', component: ProfileComponent, canActivate: [LoginGuard] },
     ])
   ],
-  providers: [],
+  providers: [LoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

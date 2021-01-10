@@ -27,8 +27,7 @@ namespace PillsReminder.Controllers
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest request)
         {
-            userService.Register(request);
-            return Ok();
+            return Ok(userService.Register(request));
         }
 
         [HttpPost("login")]
