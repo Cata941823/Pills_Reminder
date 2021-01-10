@@ -1,1 +1,54 @@
-<p>profile works!</p>
+<app-nav-menu></app-nav-menu>
+
+<!--<div class="card">
+    <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" alt="Avatar" style="width:100%">
+    <div class="container">
+      <h4><b>Popescu Ion</b></h4> 
+      <p>Adresa:</p> 
+      <p>E-mail:</p> 
+    </div>
+</div>
+
+<div class="editprofile">
+    <div class="container">
+      <h4><b>Popescu Ion</b></h4> 
+      <p>Adresa:</p> 
+      <p>E-mail:</p> 
+    </div>
+</div>
+-->
+
+<div class="card">
+  <img src="https://simpleicon.com/wp-content/uploads/account.png" alt="Avatar" style="width:100%">
+  <h1>{{nume}} {{prenume}}</h1>
+  <p class="title">{{email}}</p>
+  <p><button class="settings-button" (click)="redirectToLogin();">Sign out</button></p>
+</div>
+
+<div class="card-1">
+  <br>
+  <h1>Editare profil</h1>
+  <form action="#">
+    <div class="form-group">
+      <label for="nume">Nume</label>
+      <input class="form-control" type="text" name="nume" id="nume" placeholder="Popescu" required />
+    </div>
+    <div class="form-group">
+      <label for="prenume">Prenume</label>
+      <input class="form-control" type="text" name="prenume" id="prenume" placeholder="Ion" required />
+    </div>
+    <div class="form-group">
+      <label for="parola">Parola</label>
+      <input class="form-control" type="password" name="parola" id="parola" placeholder="********" required />
+    </div>
+    <div class="m-t-lg">
+      <ul class="list-inline">
+        <li>
+          <input class="btn btn--form" type="submit" value="Update Profil" />
+        </li>
+        <br>
+      </ul>
+    </div>
+  </form>
+
+</div>

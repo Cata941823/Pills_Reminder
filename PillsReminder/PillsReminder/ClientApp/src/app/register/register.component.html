@@ -1,31 +1,42 @@
-<div class="signup-container">
-
-  <div class="picture1">&nbsp;</div>
-  <form class="signup-form">
-
-    <mat-form-field class="signup-full-width">
-      <mat-label>Nume</mat-label>
-      <input matInput [(ngModel)]="username" type="text" name="username">
-    </mat-form-field>
-
-    <mat-form-field class="signup-full-width">
-      <mat-label>Prenume</mat-label>
-      <input matInput [(ngModel)]="parola" type="password" name="parola">
-    </mat-form-field>
-
-    <mat-form-field class="signup-full-width">
-      <mat-label>E-mail</mat-label>
-      <input matInput [(ngModel)]="nume" type="text" name="nume">
-    </mat-form-field>
-
-    <mat-form-field class="signup-full-width">
-      <mat-label>Parola</mat-label>
-      <input matInput [(ngModel)]="prenume" type="text" name="prenume">
-    </mat-form-field>
-
-    <button (click)='window.alert("Registered");' class="signup-button" mat-raised-button color="primary">INREGISTREAZA-TE</button>
-  </form>
-  <div class="goto-login">
-    Ai deja un cont? <a routerLinkActive="active" style="text-decoration: none;">Click aici</a>
+<div class="signup__container">
+  <div class="container__child signup__thumbnail">
+    <div class="thumbnail__logo">
+      <h1 class="logo__text">Danila Catalin-Gabriel</h1>
+    </div>
+    <div class="thumbnail__content text-center">
+      <h1 class="heading--primary">Pills Reminder</h1>
+      <h2 class="heading--secondary">O aplicatie web pentru gestionarea medicamentelor tale</h2>
+    </div>
+    <div class="signup__overlay"></div>
+  </div>
+  <div class="container__child signup__form">
+    <form action="#">
+      <div class="form-group">
+        <label for="Nume">Nume</label>
+        <input [(ngModel)]="Nume" class="form-control" type="text" name="Nume" id="nume" placeholder="Popescu" required />
+      </div>
+      <div class="form-group">
+        <label for="Prenume">Prenume</label>
+        <input [(ngModel)]="Prenume" class="form-control" type="text" name="Prenume" id="Prenume" placeholder="Ion" required />
+      </div>
+      <div class="form-group">
+        <label for="Email">Email</label>
+        <input [(ngModel)]="Email" class="form-control" type="text" name="Email" id="Email" placeholder="popescu.ion@gmail.com" required />
+      </div>
+      <div class="form-group">
+        <label for="Parola">Parola</label>
+        <input [(ngModel)]="Parola" class="form-control" type="password" name="Parola" id="Parola" placeholder="********" required />
+      </div>
+      <div class="m-t-lg">
+        <ul class="list-inline">
+          <li>
+            <input routerLink="{{catreLogin}}" (click)="signUp()" class="btn btn--form" type="submit" value="Register" />
+          </li>
+          <li>
+            <a class="signup__link" href="/login">Ai deja un cont?</a>
+          </li>
+        </ul>
+      </div>
+    </form>  
   </div>
 </div>
