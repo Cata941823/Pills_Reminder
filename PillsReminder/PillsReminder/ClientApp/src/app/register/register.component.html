@@ -1,0 +1,31 @@
+<div class="signup-container">
+
+  <div class="picture1">&nbsp;</div>
+  <form class="signup-form">
+
+    <mat-form-field class="signup-full-width">
+      <mat-label>Nume</mat-label>
+      <input matInput [(ngModel)]="username" type="text" name="username">
+    </mat-form-field>
+
+    <mat-form-field class="signup-full-width">
+      <mat-label>Prenume</mat-label>
+      <input matInput [(ngModel)]="parola" type="password" name="parola">
+    </mat-form-field>
+
+    <mat-form-field class="signup-full-width">
+      <mat-label>E-mail</mat-label>
+      <input matInput [(ngModel)]="nume" type="text" name="nume">
+    </mat-form-field>
+
+    <mat-form-field class="signup-full-width">
+      <mat-label>Parola</mat-label>
+      <input matInput [(ngModel)]="prenume" type="text" name="prenume">
+    </mat-form-field>
+
+    <button (click)='window.alert("Registered");' class="signup-button" mat-raised-button color="primary">INREGISTREAZA-TE</button>
+  </form>
+  <div class="goto-login">
+    Ai deja un cont? <a routerLinkActive="active" style="text-decoration: none;">Click aici</a>
+  </div>
+</div>

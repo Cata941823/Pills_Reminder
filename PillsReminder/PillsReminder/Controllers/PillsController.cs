@@ -42,15 +42,15 @@ namespace PillsReminder.Controllers
         }
 
         [HttpPut("UpdateDoza")]
-        public IActionResult UpdateDoza(int IdDoza, bool Luata)
+        public IActionResult UpdateDoza(DozaMedicamentRequestIdLuata doza)
         {
-            return Ok(pillsService.UpdateDoza(IdDoza, Luata));
+            return Ok(pillsService.UpdateDoza(doza.Id, doza.Luata));
         }
 
         [HttpDelete("DeleteDoza")]
-        public IActionResult DeleteDoza(int IdDoza)
+        public IActionResult DeleteDoza(DozaMedicamentRequestId IdDoza)
         {
-            return Ok(pillsService.DeleteDoza(IdDoza));
+            return Ok(pillsService.DeleteDoza(IdDoza.Id));
         }
 
 

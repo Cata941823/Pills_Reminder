@@ -1,0 +1,31 @@
+.signup-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.signup-full-width {
+  width: 100%;
+  font-size: 15px;
+  margin: 0 auto;
+}
+
+.signup-button {
+  margin-left: 40%;
+}
+
+.goto-login {
+  position: relative;
+  margin-top: 1%;
+  margin-left: 44%;
+}
+
+div.picture1 {
+  position: relative;
+  width: 200px; /*width of your image*/
+  height: 200px; /*height of your image*/
+  background-image: url('../Images/logo.png');
+  margin: 0 auto; /* If you want no margin */
+  padding: 0; /*if your want to padding */
+}
