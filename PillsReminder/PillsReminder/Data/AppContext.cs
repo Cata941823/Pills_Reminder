@@ -26,7 +26,13 @@ namespace PillsReminder.Data
             modelBuilder.Entity<User>()
                 .HasOne(a => a.Adresa)
                 .WithOne(b => b.User)
-                .HasForeignKey<Adresa>(b => b.IdUtilizator);
+                .HasForeignKey<Adresa>(b => b.IdUtilizator).OnDelete(DeleteBehavior.Cascade);
+            
+            modelBuilder.Entity<User>()
+                .HasMany(a => a.DozaMedicaments)
+                .WithOne(b => b.User)
+                .OnDelete(DeleteBehavior.Cascade);
+
         }
     }
 }

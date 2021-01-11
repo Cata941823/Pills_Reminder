@@ -13,7 +13,7 @@ namespace PillsReminder.Service
     {
         //List<User> GetAll();
         User GetUserById(int id);
-        bool EditProfile(UserProfileResponse request, int Id);
+        bool EditProfile(UpdateProfile request, int Id);
         bool DeleteUserById(int id);
     }
 }

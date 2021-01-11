@@ -34,12 +34,20 @@ namespace PillsReminder.Controllers
             return Ok(pillsService.CreateDoza(dozaMedicament, user.Id));
         }
 
-        [HttpGet("GetLista")]
+        [HttpGet("GetListaDoze")]
         public IActionResult GetDoze()
         {
             var user = (User)HttpContext.Items["User"];
             return Ok(pillsService.GetDoze());
         }
+
+        [HttpGet("GetListaPastile")]
+        public IActionResult GetPastile()
+        {
+            var user = (User)HttpContext.Items["User"];
+            return Ok(pillsService.GetPastile());
+        }
+
 
         [HttpPut("UpdateDoza")]
         public IActionResult UpdateDoza(DozaMedicamentRequestIdLuata doza)

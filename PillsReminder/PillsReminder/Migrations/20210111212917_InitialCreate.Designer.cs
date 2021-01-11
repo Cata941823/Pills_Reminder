@@ -10,8 +10,8 @@ using PillsReminder.Data;
 namespace PillsReminder.Migrations
 {
     [DbContext(typeof(Data.AppContext))]
-    [Migration("20210107222107_Initial")]
-    partial class Initial
+    [Migration("20210111212917_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -164,7 +164,8 @@ namespace PillsReminder.Migrations
 
                     b.HasOne("PillsReminder.Entities.User", "User")
                         .WithMany("DozaMedicaments")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Medicament");
 

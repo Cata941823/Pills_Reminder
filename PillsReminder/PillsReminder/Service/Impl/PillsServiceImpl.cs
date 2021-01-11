@@ -61,6 +61,11 @@ namespace PillsReminder.Service.Impl
             return dozaMedicamentRepository.GetAll();
         }
 
+        public List<Medicament> GetPastile()
+        {
+            return medicamentRepository.GetAll();
+        }
+
         public bool UpdateDoza(int IdDoza, bool Luata)
         {
             DozaMedicament doza = dozaMedicamentRepository.FindById(IdDoza);

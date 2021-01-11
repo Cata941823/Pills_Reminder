@@ -162,7 +162,8 @@ namespace PillsReminder.Migrations
 
                     b.HasOne("PillsReminder.Entities.User", "User")
                         .WithMany("DozaMedicaments")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Medicament");
 

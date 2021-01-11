@@ -1,0 +1,24 @@
+h3 {
+  text-align: center;
+}
+
+form{
+  margin: 20px auto;
+}
+
+form label {
+  font-weight: 20px;
+}
+
+form input {
+   margin: 0px auto;
+   width: 100%;
+   outline: 0;
+   border-width: 0 0 2px;
+   border-color: black;
+   margin-bottom: 30px;
+}
+
+form input:focus {
+  border-color: green;
+}

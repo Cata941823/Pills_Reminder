@@ -20,9 +20,10 @@
 
 <div class="card">
   <img src="https://simpleicon.com/wp-content/uploads/account.png" alt="Avatar" style="width:100%">
-  <h1>{{nume}} {{prenume}}</h1>
-  <p class="title">{{email}}</p>
-  <p><button class="settings-button" (click)="redirectToLogin();">Sign out</button></p>
+  <h1>{{NumeDeAfisat}} {{PrenumeDeAfisat}}</h1>
+  <p class="title">{{EmailDeAfisat}}</p>
+  <p><button class="settings-button" (click)="signOut();">Sign out</button></p>
+  <p><button style="background-color: red; color: white;" class="settings-button" (click)="deleteAccount();">Delete account</button></p>
 </div>
 
 <div class="card-1">
@@ -31,24 +32,25 @@
   <form action="#">
     <div class="form-group">
       <label for="nume">Nume</label>
-      <input class="form-control" type="text" name="nume" id="nume" placeholder="Popescu" required />
+      <input [(ngModel)]="NumeUpdate" class="form-control" type="text" name="nume" id="nume" placeholder="Schimba numele de familie" required />
     </div>
     <div class="form-group">
       <label for="prenume">Prenume</label>
-      <input class="form-control" type="text" name="prenume" id="prenume" placeholder="Ion" required />
+      <input [(ngModel)]="PrenumeUpdate" class="form-control" type="text" name="prenume" id="prenume" placeholder="Schimba-ti prenumele" required />
     </div>
     <div class="form-group">
       <label for="parola">Parola</label>
-      <input class="form-control" type="password" name="parola" id="parola" placeholder="********" required />
+      <input [(ngModel)]="ParolaUpdate" class="form-control" type="password" name="parola" id="parola" placeholder="********" required />
     </div>
     <div class="m-t-lg">
       <ul class="list-inline">
         <li>
-          <input class="btn btn--form" type="submit" value="Update Profil" />
+          <input (click)="validateForm();" class="btn btn--form" type="submit" value="Update Profil" />
         </li>
-        <br>
+        <br />
       </ul>
     </div>
   </form>
 
 </div>
+

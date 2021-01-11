@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginGuard } from './guard/login.guard';
+import { PillsComponent } from './pills/pills.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LoginGuard } from './guard/login.guard';
     FetchDataComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    PillsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,6 +39,7 @@ import { LoginGuard } from './guard/login.guard';
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'profile', component: ProfileComponent, canActivate: [LoginGuard] },
+      { path: 'pills', component: PillsComponent, canActivate: [LoginGuard] },
     ])
   ],
   providers: [LoginGuard],

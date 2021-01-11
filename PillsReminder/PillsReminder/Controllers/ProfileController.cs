@@ -34,7 +34,7 @@ namespace PillsReminder.Controllers
         }
 
         [HttpPut("UpdateProfile")]
-        public IActionResult UpdateUser(UserProfileResponse request)
+        public IActionResult UpdateUser(UpdateProfile request)
         {
             var user = (User)HttpContext.Items["User"];
             return Ok(profileService.EditProfile(request, user.Id));

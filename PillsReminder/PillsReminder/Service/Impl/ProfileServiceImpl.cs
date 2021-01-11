@@ -25,21 +25,21 @@ namespace PillsReminder.Service.Impl
         {
             User user = userRepository.FindById(id);
             userRepository.Delete(user);
-            userRepository.SaveChanges();
+            return userRepository.SaveChanges();
 
-            if (userRepository.FindById(id) == null)
-            {
-                return true;
-            }
-
-            return false;
+//            if (userRepository.FindById(id) == null)
+  //          {
+    //            return true;
+      //      }
+            //return false;
         }
 
-        public bool EditProfile(UserProfileResponse request, int id)
+        public bool EditProfile(UpdateProfile request, int id)
         {
             User user = userRepository.FindById(id);
             user.Nume = request.Nume;
             user.Prenume = request.Prenume;
+            user.Parola = request.Parola;
 
             userRepository.Update(user);
             return userRepository.SaveChanges();

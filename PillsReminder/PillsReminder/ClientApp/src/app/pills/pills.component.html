@@ -1,0 +1,31 @@
+<app-nav-menu></app-nav-menu>
+
+<h3>INSERARE MEDICAMENTATIE</h3>
+<form>
+  <fieldset>
+
+    <label for="pastilaAleasa">Pastile:</label>
+    <input [(ngModel)]="pastilaAleasaInserate" type="text" id="pastilaAleasa" name="pastilaAleasa" list="lista_pastile">
+    <datalist id="lista_pastile">
+      <ng-container *ngFor="let pastila of lista_tuturor_pastilelor">
+        <option value={{pastila.Denumire}}>
+      </ng-container>
+    </datalist>
+
+    <br />
+    <label for="cantitatePastile">Cantitate pastile:</label>
+    <input [(ngModel)]="cantitatePastileInserate" type="number" id="cantitatePastile" name="cantitatePastile"><br />
+
+    <label for="dataInceput">Data inceput:</label>
+    <input [(ngModel)]="dataAleasaInserate" type="text" id="dataInceput" name="dataInceput"><br />
+
+    <label for="numarZile">Numar zile:</label>
+    <input [(ngModel)]="numarZileInserate" type="number" id="numarZile" name="numarZile"><br />
+
+    <label for="ora">Ora:</label>
+    <input [(ngModel)]="oraInserate" type="text" id="ora" name="ora"><br />
+
+    <button (click)="createDoza();" type="submit" style="width: 100%; color: white; background-color: rgb(27, 139, 114)" class="btn">Adauga medicamentatie</button>
+
+  </fieldset>
+</form>

@@ -13,6 +13,7 @@ namespace PillsReminder.Service
     {
         bool CreateDoza(DozaMedicamentRequest dozaMedicament, int idUser);
         List<DozaMedicament> GetDoze();
+        List<Medicament> GetPastile();
         bool UpdateDoza(int IdDoza, bool Luata);
         bool DeleteDoza(int IdDoza);
     }

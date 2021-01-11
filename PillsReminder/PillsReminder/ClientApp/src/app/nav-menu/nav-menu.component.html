@@ -3,7 +3,7 @@
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-info border-bottom box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">PillsReminder</a>
+      <a class="navbar-brand" [routerLink]="['/home']">PillsReminder</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -20,13 +20,13 @@
         [ngClass]="{ show: isExpanded }"
       >
         <ul class="navbar-nav flex-grow">
-          <li
+          <!--<li
             class="nav-item"
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
             <a class="nav-link" [routerLink]="['/']">Home</a>
-          </li>
+          </li>-->
           <!--<li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/counter']"
               >Counter</a
@@ -38,12 +38,12 @@
             >
           </li>-->
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link" [routerLink]="['/fetch-data']"
+            <a class="nav-link" [routerLink]="['/pills']"
               >Gestionare medicamente</a
             >
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link" [routerLink]="['/fetch-data']"
+            <a class="nav-link" [routerLink]="['/profile']"
               >Profilul meu</a
             >
           </li>
