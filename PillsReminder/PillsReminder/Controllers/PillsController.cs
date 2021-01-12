@@ -38,7 +38,7 @@ namespace PillsReminder.Controllers
         public IActionResult GetDoze()
         {
             var user = (User)HttpContext.Items["User"];
-            return Ok(pillsService.GetDoze());
+            return Ok(pillsService.GetDoze(user.Id));
         }
 
         [HttpGet("GetListaPastile")]

@@ -12,7 +12,7 @@ namespace PillsReminder.Service
 #pragma warning restore IDE1006 // Naming Styles
     {
         bool CreateDoza(DozaMedicamentRequest dozaMedicament, int idUser);
-        List<DozaMedicament> GetDoze();
+        List<DozaMedicament> GetDoze(int Id);
         List<Medicament> GetPastile();
         bool UpdateDoza(int IdDoza, bool Luata);
         bool DeleteDoza(int IdDoza);

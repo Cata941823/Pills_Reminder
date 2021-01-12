@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       if (data['token'] != null) {
           localStorage.setItem("token", data['token']);
         if (localStorage.token != null || localStorage.token != "\"false\"") {
-          this.router.navigate(['home']);
+          this.router.navigate(['doze']);
         }
       }
     });

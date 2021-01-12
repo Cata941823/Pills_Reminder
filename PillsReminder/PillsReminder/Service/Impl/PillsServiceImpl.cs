@@ -56,9 +56,27 @@ namespace PillsReminder.Service.Impl
             return dozaMedicamentRepository.SaveChanges();
         }
 
-        public List<DozaMedicament> GetDoze()
+        public List<DozaMedicament> GetDoze(int Id)
         {
-            return dozaMedicamentRepository.GetAll();
+            List<DozaMedicament> doze = dozaMedicamentRepository.GetAll();
+            List<DozaMedicament> dozeUtilizator = new List<DozaMedicament>();
+            if (doze.Count > 0)
+            {
+                for (int i = 0; i < doze.Count; i++)
+                {
+                    if (doze[i].User != null)
+                    {
+                        Console.WriteLine(doze[i].User.Id == Id);
+                        if (doze[i].User.Id == Id)
+                        {
+                            dozeUtilizator.Add(doze[i]);
+                            Console.WriteLine(dozeUtilizator);
+                        }
+                    }
+                }
+                return dozeUtilizator;
+            }
+            return null;
         }
 
         public List<Medicament> GetPastile()
