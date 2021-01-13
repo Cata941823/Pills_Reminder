@@ -16,7 +16,7 @@ export class DozeComponent implements OnInit {
   displayedColumns: string[] = ['Cantitate', 'Data', 'Ora', 'Medicament', 'Luata'];
   dataSource: MatTableDataSource<any>;
 
-  lista_pastile_de_luat: Array<DozajAfisare> = null;
+  lista_pastile_de_luat: Array<DozajAfisare> = new Array<DozajAfisare>();
   unique_lista_pastile_de_luat: Array<DozajAfisare> = null;
 
   constructor(private pillsService: PillsService, private router: Router) { }
@@ -31,13 +31,20 @@ export class DozeComponent implements OnInit {
       if (data != null) {
         // @ts-ignore
         for (let entry of data) {
+          console.log(entry);
           var pastilaDeLuat: DozajAfisare = new DozajAfisare();
 
           pastilaDeLuat.Cantitate = entry["cantitate_pastila"];
-          pastilaDeLuat.Data = entry["data"];
-          pastilaDeLuat.Ora = entry["ora"];
-          pastilaDeLuat.Medicament = entry["medicament"];
-          pastilaDeLuat.Luata = entry["luata"];
+          pastilaDeLuat.Data = entry["data"].split("T")[0];
+          console.log(new Date().toLocaleString());
+          pastilaDeLuat.Ora = /T(.+)/.exec(entry["ora"])[1];
+          pastilaDeLuat.Medicament = entry["denumireMedicament"];
+          if (entry["luata"] == "false") {
+            pastilaDeLuat.Luata = "DA";
+          }
+          else {
+            pastilaDeLuat.Luata = "NU";
+          }
           console.log(pastilaDeLuat);
           this.lista_pastile_de_luat.push(pastilaDeLuat);
         }

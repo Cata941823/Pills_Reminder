@@ -33,6 +33,20 @@ namespace PillsReminder.Data
                 .WithOne(b => b.User)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<User>()
+                .HasMany(a => a.Medicaments)
+                .WithMany(b => b.Users);
+
+            modelBuilder.Entity<DozaMedicament>()
+                .HasOne(a => a.Medicament)
+                .WithMany(b => b.DozaMedicaments);
+
+            modelBuilder.Entity<Medicament>()
+                .HasMany(a => a.DozaMedicaments)
+                .WithOne(b => b.Medicament);
+
+
+
         }
     }
 }

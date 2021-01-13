@@ -10,7 +10,7 @@ using PillsReminder.Data;
 namespace PillsReminder.Migrations
 {
     [DbContext(typeof(Data.AppContext))]
-    [Migration("20210111212917_InitialCreate")]
+    [Migration("20210113214546_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

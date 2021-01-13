@@ -37,12 +37,15 @@ namespace PillsReminder.Service.Impl
                 DozaMedicament dozaMedicament = new DozaMedicament();
                 dozaMedicament.Luata = false;
                 dozaMedicament.Cantitate_pastila = request.Cantitate_pastila;
-                Medicament medicament = medicamentRepository.FindById(request.IdPastila);
-                dozaMedicament.Medicament = medicament;
                 dozaMedicament.Ora = DateTime.ParseExact(request.Ora, "HH:mm", provider);
                 dozaMedicament.Data = DateTime.ParseExact(request.DataInceput, "dd.MM.yyyy", provider).AddDays(i);
+                
                 User user = userRepository.FindById(id);
                 dozaMedicament.User = user;
+
+                Medicament medicament = medicamentRepository.FindById(request.IdPastila);
+                dozaMedicament.Medicament = medicament;
+                dozaMedicament.IdMedicament = request.IdPastila;
 
                 dozaMedicamentRepository.Create(dozaMedicament);
             }
@@ -56,21 +59,30 @@ namespace PillsReminder.Service.Impl
             return dozaMedicamentRepository.SaveChanges();
         }
 
-        public List<DozaMedicament> GetDoze(int Id)
+        public List<ListaDozeResponse> GetDoze(int Id)
         {
             List<DozaMedicament> doze = dozaMedicamentRepository.GetAll();
-            List<DozaMedicament> dozeUtilizator = new List<DozaMedicament>();
+            List<ListaDozeResponse> dozeUtilizator = new List<ListaDozeResponse>();
             if (doze.Count > 0)
             {
                 for (int i = 0; i < doze.Count; i++)
                 {
                     if (doze[i].User != null)
                     {
-                        Console.WriteLine(doze[i].User.Id == Id);
                         if (doze[i].User.Id == Id)
                         {
-                            dozeUtilizator.Add(doze[i]);
-                            Console.WriteLine(dozeUtilizator);
+                            doze[i].Medicament = medicamentRepository.FindById(doze[i].IdMedicament);
+
+                            ListaDozeResponse listaDozeElement = new ListaDozeResponse();
+                            listaDozeElement.IdMedicament = doze[i].Medicament.Id;
+                            listaDozeElement.DenumireMedicament = doze[i].Medicament.Denumire;
+                            listaDozeElement.IdUser = doze[i].User.Id;
+                            listaDozeElement.Luata = doze[i].Luata;
+                            listaDozeElement.Ora = doze[i].Ora;
+                            listaDozeElement.Cantitate_pastila = doze[i].Cantitate_pastila;
+                            listaDozeElement.Data = doze[i].Data;
+                            listaDozeElement.Id = doze[i].Id;
+                            dozeUtilizator.Add(listaDozeElement);
                         }
                     }
                 }

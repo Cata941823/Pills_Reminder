@@ -19,6 +19,8 @@ import { DozeComponent } from './doze/doze.component';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatIconModule } from '@angular/material/icon';
+
 
 
 @NgModule({
@@ -50,7 +52,8 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     ]),
     BrowserAnimationsModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatIconModule
   ],
   providers: [LoginGuard],
   bootstrap: [AppComponent]
