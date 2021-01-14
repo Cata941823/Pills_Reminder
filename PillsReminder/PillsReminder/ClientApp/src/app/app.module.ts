@@ -20,6 +20,8 @@ import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatIconModule } from '@angular/material/icon';
+import { HighlightDirective } from './highlight.directive';
+import { DatadeaziPipe } from './datadeazi.pipe';
 
 
 
@@ -34,7 +36,9 @@ import { MatIconModule } from '@angular/material/icon';
     LoginComponent,
     ProfileComponent,
     PillsComponent,
-    DozeComponent
+    DozeComponent,
+    HighlightDirective,
+    DatadeaziPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

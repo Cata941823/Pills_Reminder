@@ -1,6 +1,6 @@
 <app-nav-menu></app-nav-menu>
 
-<h3>Medicamente de luat pentru azi:</h3>
+<h3>Medicamente de luat pentru azi ({{data_de_azi | datadeazi: data_de_azi}}): </h3>
 
 <div class="container">
   <div class="mat-elevation-z8">
@@ -27,7 +27,7 @@
       <!-- Denumire Medicament Column -->
       <ng-container matColumnDef="Medicament">
         <th mat-header-cell *matHeaderCellDef> Medicament </th>
-        <td mat-cell *matCellDef="let element"> {{element.Medicament}} </td>
+        <td appHighlight mat-cell *matCellDef="let element"> {{element.Medicament}} </td>
       </ng-container>
 
       <!-- Medicament Luat Column -->

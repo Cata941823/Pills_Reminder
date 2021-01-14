@@ -19,6 +19,8 @@ export class DozeComponent implements OnInit {
   lista_pastile_de_luat: Array<DozajAfisare> = new Array<DozajAfisare>();
   unique_lista_pastile_de_luat: Array<DozajAfisare> = null;
 
+  data_de_azi = new Date();
+  
   constructor(private pillsService: PillsService, private router: Router) { }
 
   ngOnInit(): void {
