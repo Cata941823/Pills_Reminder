@@ -42,7 +42,7 @@ export class DozeComponent implements OnInit {
   }
 
   getAllMedicamentatii() {
-  //  var data_azi = this.formatDate(new Date().toLocaleString());
+    var data_azi = this.formatDate(new Date().toLocaleString());
     this.pillsService.getAllMedicamentatii().subscribe(data => {
       if (data != null) {
         // @ts-ignore
@@ -50,7 +50,7 @@ export class DozeComponent implements OnInit {
           console.log(entry);
           var pastilaDeLuat: DozajAfisare = new DozajAfisare();
 
-//          if (entry["data"].split("T")[0] == data_azi) {
+          if (entry["data"].split("T")[0] == data_azi) {
             pastilaDeLuat.Cantitate = entry["cantitate_pastila"];
             pastilaDeLuat.id = entry["id"];
             pastilaDeLuat.Data = entry["data"].split("T")[0];
@@ -65,7 +65,7 @@ export class DozeComponent implements OnInit {
             }
             console.log(pastilaDeLuat);
             this.lista_pastile_de_luat.push(pastilaDeLuat);
-          //}
+          }
         }
         this.unique_lista_pastile_de_luat = this.lista_pastile_de_luat.map(ar => JSON.stringify(ar))
           .filter((itm, idx, arr) => arr.indexOf(itm) === idx)

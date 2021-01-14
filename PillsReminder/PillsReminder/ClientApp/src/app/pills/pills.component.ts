@@ -60,7 +60,7 @@ export class PillsComponent implements OnInit {
     console.log(doza);
     this.pillsService.createDoza(doza).subscribe(data => {
       if (data != null) {
-        console.log(data);
+        this.router.navigate(['doze']);
       }
     });
   }
