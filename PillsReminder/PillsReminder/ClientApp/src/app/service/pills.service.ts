@@ -3,10 +3,12 @@ import { HttpClient, HttpResponse, HttpHeaders, HttpRequest } from '@angular/com
 import { Observable } from 'rxjs';
 
 export class DozajAfisare {
+  id;
   Cantitate;
   Data;
   Ora;
   Medicament;
+  idMedicament;
   Luata;
 }
 
@@ -74,6 +76,34 @@ export class PillsService {
     let options = { headers: headers };
 
     return this.httpClient.get<any>(url, options);
+  }
+
+  update(id: any): Observable<HttpResponse<any>> {
+    let url = "https://localhost:5001/api/Pills/UpdateDoza";
+    let token = localStorage.getItem("token");
+    console.log(token);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token
+    });
+    let options = { headers: headers };
+    let payload = { "Id": id, "Luata": true };
+    return this.httpClient.put<any>(url, payload, options);
+  }
+
+  delete(id: any) {
+    let url = "https://localhost:5001/api/Pills/DeleteDoza";
+    let token = localStorage.getItem("token");
+    console.log(token);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token
+    });
+    let payload = { "Id": id };
+    let options = { headers: headers, body: payload };
+
+
+    return this.httpClient.delete<any>(url, options);
   }
 
 }

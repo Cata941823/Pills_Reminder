@@ -36,10 +36,10 @@
         <td mat-cell *matCellDef="let element">
           {{element.Luata}}
 
-          <button>
+          <button (click)="update(element.id);">
             <mat-icon aria-hidden="false" aria-label="Check">check</mat-icon>
           </button>
-          <button>
+          <button (click)="delete(element.id);">
             <mat-icon aria-hidden="false" aria-label="Delete">delete</mat-icon>
           </button>
         </td>

@@ -23,10 +23,24 @@ export class DozeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllMedicamentatii();
-    this.dataSource.paginator = this.paginator;
+  }
+
+  formatDate(date) {
+    var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2)
+      month = '0' + month;
+    if (day.length < 2)
+      day = '0' + day;
+
+    return [year, month, day].join('-');
   }
 
   getAllMedicamentatii() {
+  //  var data_azi = this.formatDate(new Date().toLocaleString());
     this.pillsService.getAllMedicamentatii().subscribe(data => {
       if (data != null) {
         // @ts-ignore
@@ -34,19 +48,22 @@ export class DozeComponent implements OnInit {
           console.log(entry);
           var pastilaDeLuat: DozajAfisare = new DozajAfisare();
 
-          pastilaDeLuat.Cantitate = entry["cantitate_pastila"];
-          pastilaDeLuat.Data = entry["data"].split("T")[0];
-          console.log(new Date().toLocaleString());
-          pastilaDeLuat.Ora = /T(.+)/.exec(entry["ora"])[1];
-          pastilaDeLuat.Medicament = entry["denumireMedicament"];
-          if (entry["luata"] == "false") {
-            pastilaDeLuat.Luata = "DA";
-          }
-          else {
-            pastilaDeLuat.Luata = "NU";
-          }
-          console.log(pastilaDeLuat);
-          this.lista_pastile_de_luat.push(pastilaDeLuat);
+//          if (entry["data"].split("T")[0] == data_azi) {
+            pastilaDeLuat.Cantitate = entry["cantitate_pastila"];
+            pastilaDeLuat.id = entry["id"];
+            pastilaDeLuat.Data = entry["data"].split("T")[0];
+            pastilaDeLuat.Ora = /T(.+)/.exec(entry["ora"])[1];
+            pastilaDeLuat.Medicament = entry["denumireMedicament"];
+            pastilaDeLuat.idMedicament = entry["idMedicament"];
+            if (entry["luata"] == true) {
+              pastilaDeLuat.Luata = "DA";
+            }
+            else {
+              pastilaDeLuat.Luata = "NU";
+            }
+            console.log(pastilaDeLuat);
+            this.lista_pastile_de_luat.push(pastilaDeLuat);
+          //}
         }
         this.unique_lista_pastile_de_luat = this.lista_pastile_de_luat.map(ar => JSON.stringify(ar))
           .filter((itm, idx, arr) => arr.indexOf(itm) === idx)
@@ -57,4 +74,19 @@ export class DozeComponent implements OnInit {
     })
   }
 
+  update(id) {
+    this.pillsService.update(id).subscribe(data => {
+      if (data != null) {
+        window.location.reload();
+      }
+    });
+  }
+
+  delete(id) {
+    if (confirm('Esti sigur ca doresti sa stergi aceasta doza?')) {
+      this.pillsService.delete(id).subscribe(data => {
+        window.location.reload();
+      })
+    }
+  }
 }
